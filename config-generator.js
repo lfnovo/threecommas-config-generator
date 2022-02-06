@@ -43,6 +43,8 @@ const calculate = (protection, price_deviation, safety_order_step_scale, so_rati
         const increase_by = (target_sell-current_price)/current_price;    
         // console.log(`increase by is ${increase_by}`)
 
+        // discards anything thats 8x more expensive than the base order
+        // discards anything that doesn't recover well
         if (increase_by < protection * 0.8 && total_spent < 800) {
             console.log(`${bov},${so_ratio},${protection},${price_deviation},${safety_order_step_scale},${safety_order_volume_scale},${tp},${step},${total_spent},${increase_by}`)
         }
@@ -66,10 +68,10 @@ console.log(`bov,so_ratio,protection,price_deviation,safety_order_step_scale,saf
 // calculate(0.15, 0.02, 1.1, 0.5, 1.1, 0.015)
 
 // Calculate multiple options
-for (var price_deviation=0.005;price_deviation<=0.05;price_deviation+=0.005) {
-    for (var safety_order_step_scale=1;safety_order_step_scale<=1.55;safety_order_step_scale+=0.05) {
-        for (var so_ratio=0.5;so_ratio<=2.1;so_ratio+=0.05) {
-            for (var safety_order_volume_scale=1;safety_order_volume_scale<=2.1;safety_order_volume_scale+=0.05) {
+for (var price_deviation=0.005;price_deviation<=0.03;price_deviation+=0.001) {
+    for (var safety_order_step_scale=1;safety_order_step_scale<=1.55;safety_order_step_scale+=0.01) {
+        for (var so_ratio=0.2;so_ratio<=1.5;so_ratio+=0.05) {
+            for (var safety_order_volume_scale=0.2;safety_order_volume_scale<=2.1;safety_order_volume_scale+=0.01) {
                 calculate(protection, price_deviation, safety_order_step_scale, so_ratio, safety_order_volume_scale, tp)
             }
         }
