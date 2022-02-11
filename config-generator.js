@@ -1,6 +1,6 @@
 
 
-const calculate = (protection, price_deviation, safety_order_step_scale, so_ratio, safety_order_volume_scale, tp) => { 
+const calculate = (basePrice, protection, price_deviation, safety_order_step_scale, so_ratio, safety_order_volume_scale, tp, maxBudget) => { 
     // console.log(`setup:`)
     // console.log(`protection ${protection}`)
     // console.log(`price_deviation ${price_deviation}`)
@@ -9,8 +9,8 @@ const calculate = (protection, price_deviation, safety_order_step_scale, so_rati
     // console.log(`safety_order_volume_scale ${safety_order_volume_scale}`)
     // console.log(`tp ${tp}`)
 
-    const price = 10;
-    const bov = 100;
+    const price = 1000;
+    const bov = basePrice;
     let sov = bov * so_ratio;
     let current_price = price;
     let step = 0;
@@ -45,7 +45,7 @@ const calculate = (protection, price_deviation, safety_order_step_scale, so_rati
 
         // discards anything thats 8x more expensive than the base order
         // discards anything that doesn't recover well
-        if (increase_by < protection * 0.8 && total_spent < 800) {
+        if (increase_by < protection * 0.8 && total_spent < maxBudget) {
             console.log(`${bov},${so_ratio},${protection},${price_deviation},${safety_order_step_scale},${safety_order_volume_scale},${tp},${step},${total_spent},${increase_by}`)
         }
 }
@@ -57,6 +57,13 @@ const protection = 0.05
 
 //desired take profit
 const tp = 0.008 
+
+// max budget - anything higher than this will be filtered out
+const maxBudget = 800
+
+// base price to be used by the calculator
+const basePrice = 100
+
 
 // CSV header
 console.log(`bov,so_ratio,protection,price_deviation,safety_order_step_scale,safety_order_volume_scale,tp,steps,total_spent,increase_by`)
@@ -72,7 +79,7 @@ for (var price_deviation=0.0025;price_deviation<=0.005;price_deviation+=0.001) {
     for (var safety_order_step_scale=1;safety_order_step_scale<=1.55;safety_order_step_scale+=0.01) {
         for (var so_ratio=0.2;so_ratio<=1.5;so_ratio+=0.05) {
             for (var safety_order_volume_scale=1;safety_order_volume_scale<=1.55;safety_order_volume_scale+=0.01) {
-                calculate(protection, price_deviation, safety_order_step_scale, so_ratio, safety_order_volume_scale, tp)
+                calculate(basePrice, protection, price_deviation, safety_order_step_scale, so_ratio, safety_order_volume_scale, tp, maxBudget)
             }
         }
     }
