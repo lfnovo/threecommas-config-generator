@@ -22,3 +22,9 @@ const tp = 0.015
 
 - Run from a terminal `node config-generator.js > results.csv`
 - Open the CSV in your favorite spreadsheet and compare
+
+# setting parameters from the command line
+
+You can skip editing the file and set some of the script parameteres directly from the command line like in the example:
+
+`node config-generator.js --protection=0.10 --tp=0.015 --maxbudget=1000 --baseprice=10`

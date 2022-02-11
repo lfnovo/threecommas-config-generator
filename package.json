@@ -1,0 +1,27 @@
+{
+  "name": "threecommas-config-generator",
+  "version": "1.0.0",
+  "description": "A script to help generate DCA bots configuration and assess their performance.",
+  "main": "config-generator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lfnovo/threecommas-config-generator.git"
+  },
+  "keywords": [
+    "3commas",
+    "config",
+    "generator"
+  ],
+  "author": "Luis Novo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lfnovo/threecommas-config-generator/issues"
+  },
+  "homepage": "https://github.com/lfnovo/threecommas-config-generator#readme",
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
+}
