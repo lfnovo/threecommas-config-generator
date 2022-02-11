@@ -5,8 +5,14 @@ A script to help generate DCA bots configuration and assess their performance.
 # installation
 
 You need Node.js in your machine to run this script.
+After cloning the repo, be sure to run `npm install` before using the script.
 
-# setting up
+# running
+
+- Run from a terminal `node config-generator.js > results.csv`
+- Open the CSV in your favorite spreadsheet and compare
+
+# setting parameters by editing the file
 
 Open config-generator and change the following lines to config your desired level of protection and take profit.
 
@@ -17,11 +23,6 @@ const protection = 0.50
 //desired take profit
 const tp = 0.015
 ```
-
-# running
-
-- Run from a terminal `node config-generator.js > results.csv`
-- Open the CSV in your favorite spreadsheet and compare
 
 # setting parameters from the command line
 
